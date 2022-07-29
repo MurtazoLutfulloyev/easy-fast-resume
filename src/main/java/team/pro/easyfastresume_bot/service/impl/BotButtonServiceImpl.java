@@ -93,8 +93,29 @@ public class BotButtonServiceImpl implements BotButtonService {
     }
     @Override
     public InlineKeyboardMarkup chooseITStudy() {
-   return createInlineKeyboardButton(List.of("PDP Academy","Najot Ta'lim","Astrum","Bobir Akilkhanov Academy", "Proweb", "Not on this list", "I prepared independently"),2);
+   return createInlineKeyboardButton(List.of("PDP ACADEMY","Najot Ta'lim","Astrum","Bobir Akilkhanov Academy", "Proweb", "Not on this list", "I prepared independently"),2);
     }
+
+    @Override
+    public ReplyKeyboardMarkup inputDirection() {
+        return createMarkupButtons(List.of("Back"));
+    }
+
+    @Override
+    public ReplyKeyboardMarkup chooseInformation() {
+        return createMarkupButtons(List.of("Bachelor", "Secondary education", "Main menu", "back"));
+    }
+
+    @Override
+    public ReplyKeyboardMarkup chooseEducation() {
+       return createMarkupButtons(List.of("Main menu", "back"));
+    }
+
+    @Override
+    public ReplyKeyboardMarkup chooseEducationDirection() {
+        return createMarkupButtons(List.of("Main menu", "back"));
+    }
+
 
     @Override
     public InlineKeyboardMarkup chooseRegions() {

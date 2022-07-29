@@ -4,6 +4,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 
 @NoArgsConstructor
@@ -27,8 +30,13 @@ public class UserMessagesImpl implements UserMessages {
             case 5:
                 return "Choose your profession";
             case 6:
-                return "";
-
+                return "input direction";
+            case 7:
+                return "Select your information";
+            case 8:
+                return "input education";
+            case 9:
+                return "input education direction";
 
             default:
                 return "";

@@ -25,4 +25,11 @@ public interface BotButtonService {
 
     InlineKeyboardMarkup chooseITStudy();
 
+    ReplyKeyboardMarkup inputDirection();
+
+    ReplyKeyboardMarkup chooseInformation();
+
+    ReplyKeyboardMarkup chooseEducation();
+
+    ReplyKeyboardMarkup chooseEducationDirection();
 }

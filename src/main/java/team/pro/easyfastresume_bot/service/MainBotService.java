@@ -117,98 +117,127 @@ public class MainBotService extends TelegramLongPollingBot {
                         round.put(chatId, 4);
                         back.put(chatId, 2);
                         break;
+                    case 6:
+                        map.put("direction", message.getText());
+                        globalMap.put(chatId,map);
+                        round.put(chatId,7);
+                        executeButtons(buttonService.chooseInformation(),null);
+                        back.put(chatId,6);
+                        break;
+                    case 7:
+                        if (message.getText().equals("Bachelor")){
+                            map.put("information",message.getText());
+                            globalMap.put(chatId,map);
+                            round.put(chatId,8);
+                            executeButtons(buttonService.chooseEducation(),null);
+                            back.put(chatId,7);
+                            break;
+                        }
+
+                    case 8:
+                        map.put("education", message.getText());
+                        globalMap.put(chatId,map);
+                        round.put(chatId,9);
+                        executeButtons(buttonService.chooseEducationDirection(),null);
+                        back.put(chatId,8);
                     default:
                         userMessage = "Nothing not found !";
                 }
 
             }
 
+            if (update.getMessage().hasContact()) {
+                round.put(update.getMessage().getChatId(),5);
+                executeButtons(null, buttonService.chooseITStudy());
+
+            }
+
         }
-        /*************************************************InlineKeyboards******************************************/
+        /*************************************************InlineKeyboards**********************************************/
         if (update.hasCallbackQuery()) {
             CallbackQuery callbackQuery = update.getCallbackQuery();
             if (round.get(user.getChatId()) == 4) {
                 switch (callbackQuery.getData()) {
                     case "Andizhan":
-                        round.put(user.getChatId(), 4);
                         shareContact();
+                        round.put(user.getChatId(), 5);
                         map.put("getRegion", "Andizhan");
                         globalMap.put(user.getChatId(), map);
                         break;
                     case "Bukhara":
-                        round.put(user.getChatId(), 4);
+                        round.put(user.getChatId(), 5);
                         shareContact();
                         map.put("getRegion", "Bukhara");
                         globalMap.put(user.getChatId(), map);
                         break;
                     case "Fergana":
-                        round.put(user.getChatId(), 4);
+                        round.put(user.getChatId(), 5);
                         shareContact();
                         map.put("getRegion", "Fergana");
                         globalMap.put(user.getChatId(), map);
                         break;
                     case "Jizzakh":
-                        round.put(user.getChatId(), 4);
+                        round.put(user.getChatId(), 5);
                         shareContact();
                         map.put("getRegion", "Jizzakh");
                         globalMap.put(user.getChatId(), map);
                         break;
                     case "Namangan":
-                        round.put(user.getChatId(), 4);
+                        round.put(user.getChatId(), 5);
                         shareContact();
                         map.put("getRegion", "Namangan");
                         globalMap.put(user.getChatId(), map);
                         break;
                     case "Navoi":
-                        round.put(user.getChatId(), 4);
+                        round.put(user.getChatId(), 5);
                         shareContact();
                         map.put("getRegion", "Navoi");
                         globalMap.put(user.getChatId(), map);
                         break;
                     case "Surkhandarya":
-                        round.put(user.getChatId(), 4);
+                        round.put(user.getChatId(), 5);
                         shareContact();
                         map.put("getRegion", "Surkhandarya");
                         globalMap.put(user.getChatId(), map);
                         break;
                     case "Kashkadarya":
-                        round.put(user.getChatId(), 4);
+                        round.put(user.getChatId(), 5);
                         shareContact();
                         map.put("getRegion", "Kashkadarya");
                         globalMap.put(user.getChatId(), map);
                         break;
                     case "Syrdarya":
-                        round.put(user.getChatId(), 4);
+                        round.put(user.getChatId(), 5);
                         shareContact();
                         map.put("getRegion", "Syrdarya");
                         globalMap.put(user.getChatId(), map);
                         break;
                     case "Samarkand":
-                        round.put(user.getChatId(), 4);
+                        round.put(user.getChatId(), 5);
                         shareContact();
                         map.put("getRegion", "Samarkand");
                         globalMap.put(user.getChatId(), map);
                         break;
                     case "Khorezm":
-                        round.put(user.getChatId(), 4);
+                        round.put(user.getChatId(), 5);
                         shareContact();
                         map.put("getRegion", "Khorezm");
                         globalMap.put(user.getChatId(), map);
                         break;
                     case "Karakalpakstan":
-                        round.put(user.getChatId(), 4);
+                        round.put(user.getChatId(), 5);
                         shareContact();
                         map.put("getRegion", "Karakalpakstan");
                         globalMap.put(user.getChatId(), map);
                         break;
                     case "Tashkent Region":
-                        round.put(user.getChatId(), 4);
+                        round.put(user.getChatId(), 5);
                         shareContact();
                         map.put("getRegion", "Tashkent Region");
                         globalMap.put(user.getChatId(), map);
                         break;
                     case "Tashkent":
-                        round.put(user.getChatId(), 4);
+                        round.put(user.getChatId(), 5);
                         shareContact();
                         map.put("getRegion", "Tashkent");
                         globalMap.put(user.getChatId(), map);
@@ -217,19 +246,21 @@ public class MainBotService extends TelegramLongPollingBot {
                         userMessage = "Nothing not found !";
 
                 }
-            } else if (round.get(user.getChatId()) == 4) {
+            } else if (round.get(user.getChatId()) == 5) {
                 switch (callbackQuery.getData()) {
                     case "PDP ACADEMY":
+                        map.put("direction", update.getCallbackQuery().getData());
+                        globalMap.put(user.getChatId(), map);
+                        round.put(user.getChatId(), 6);
+                        executeButtons(buttonService.inputDirection(), null);
+                        back.put(user.getChatId(), 5);
                         break;
                 }
             }
         }
 
         /***********************************************Contact********************************************************/
-        if (update.getMessage().hasContact()) {
-            executeButtons(null, buttonService.chooseITStudy());
 
-        }
 
 
     }
