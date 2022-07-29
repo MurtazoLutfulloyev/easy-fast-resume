@@ -97,14 +97,14 @@ public class MainBotService extends TelegramLongPollingBot {
                     case 1:
                         map.put("firstName", message.getText());
                         globalMap.put(chatId, map);
-                        executeButtons(buttonService.inputLastName(), null);
+                        executeButtons(buttonService.inputLastName(), null, null);
                         round.put(chatId, 2);
                         back.put(chatId, 1);
                         break;
                     case 2:
                         map.put("lastName", message.getText());
                         globalMap.put(chatId, map);
-                        executeButtons(buttonService.inputLastName(), null);
+                        executeButtons(buttonService.inputLastName(), null, null);
                         round.put(chatId, 3);
                         back.put(chatId, 1);
                         break;
@@ -113,33 +113,71 @@ public class MainBotService extends TelegramLongPollingBot {
                     case 3:
                         map.put("regions", message.getText());
                         globalMap.put(chatId, map);
-                        executeButtons(null, buttonService.chooseRegions());
+                        executeButtons(null, buttonService.chooseRegions(), null);
                         round.put(chatId, 4);
                         back.put(chatId, 2);
                         break;
                     case 6:
                         map.put("direction", message.getText());
-                        globalMap.put(chatId,map);
-                        round.put(chatId,7);
-                        executeButtons(buttonService.chooseInformation(),null);
-                        back.put(chatId,6);
+                        globalMap.put(chatId, map);
+                        round.put(chatId, 7);
+                        executeButtons(buttonService.chooseInformation(), null, null);
+                        back.put(chatId, 6);
                         break;
                     case 7:
-                        if (message.getText().equals("Bachelor")){
-                            map.put("information",message.getText());
-                            globalMap.put(chatId,map);
-                            round.put(chatId,8);
-                            executeButtons(buttonService.chooseEducation(),null);
-                            back.put(chatId,7);
+                        if (message.getText().equals("Bachelor")) {
+                            map.put("information", message.getText());
+                            globalMap.put(chatId, map);
+                            round.put(chatId, 8);
+                            executeButtons(buttonService.chooseEducation(), null, null);
+                            back.put(chatId, 7);
                             break;
                         }
-
+                        if (message.getText().equals("Secondary education")) {
+                            map.put("information", message.getText());
+                            globalMap.put(chatId, map);
+                            round.put(chatId, 8);
+                            executeButtons(buttonService.chooseEducation(), null, null);
+                            back.put(chatId, 7);
+                            break;
+                        }
                     case 8:
                         map.put("education", message.getText());
-                        globalMap.put(chatId,map);
-                        round.put(chatId,9);
-                        executeButtons(buttonService.chooseEducationDirection(),null);
-                        back.put(chatId,8);
+                        globalMap.put(chatId, map);
+                        round.put(chatId, 9);
+                        executeButtons(buttonService.chooseEducationDirection(), null, null);
+                        back.put(chatId, 8);
+                        break;
+                    case 9:
+                        map.put("educationDirection", message.getText());
+                        globalMap.put(chatId, map);
+                        round.put(chatId, 10);
+                        executeButtons(buttonService.chooseCourse(map.get("information")), null, null);
+                        back.put(chatId, 8);
+                        break;
+                    case 10:
+                        if (message.getText().equals("1") || message.getText().equals("2")) {
+                            map.put("startDate", message.getText());
+                            globalMap.put(chatId, map);
+                            round.put(chatId, 11);
+                            executeButtons(buttonService.inputStartDate(), null, "bachelor");
+                            back.put(chatId, 9);
+                            break;
+                        } else if (message.getText().equals("i finished")) {
+                            map.put("finishedEducation", message.getText());
+                            globalMap.put(chatId, map);
+                            round.put(chatId, 11);
+                            executeButtons(buttonService.inputMasterEducation(), null, "finished");
+                            back.put(chatId, 9);
+                            break;
+                        }
+                    case 11:
+                        map.put("endDate", message.getText());
+                        globalMap.put(chatId, map);
+                        round.put(chatId, 12);
+                        executeButtons(buttonService.inputEndDate(), null, null);
+                        back.put(chatId, 10);
+                        break;
                     default:
                         userMessage = "Nothing not found !";
                 }
@@ -147,8 +185,8 @@ public class MainBotService extends TelegramLongPollingBot {
             }
 
             if (update.getMessage().hasContact()) {
-                round.put(update.getMessage().getChatId(),5);
-                executeButtons(null, buttonService.chooseITStudy());
+                round.put(update.getMessage().getChatId(), 5);
+                executeButtons(null, buttonService.chooseITStudy(), null);
 
             }
 
@@ -159,86 +197,86 @@ public class MainBotService extends TelegramLongPollingBot {
             if (round.get(user.getChatId()) == 4) {
                 switch (callbackQuery.getData()) {
                     case "Andizhan":
-                        shareContact();
+                        shareContact(null);
                         round.put(user.getChatId(), 5);
                         map.put("getRegion", "Andizhan");
                         globalMap.put(user.getChatId(), map);
                         break;
                     case "Bukhara":
+                        shareContact(null);
                         round.put(user.getChatId(), 5);
-                        shareContact();
                         map.put("getRegion", "Bukhara");
                         globalMap.put(user.getChatId(), map);
                         break;
                     case "Fergana":
+                        shareContact(null);
                         round.put(user.getChatId(), 5);
-                        shareContact();
                         map.put("getRegion", "Fergana");
                         globalMap.put(user.getChatId(), map);
                         break;
                     case "Jizzakh":
+                        shareContact(null);
                         round.put(user.getChatId(), 5);
-                        shareContact();
                         map.put("getRegion", "Jizzakh");
                         globalMap.put(user.getChatId(), map);
                         break;
                     case "Namangan":
+                        shareContact(null);
                         round.put(user.getChatId(), 5);
-                        shareContact();
                         map.put("getRegion", "Namangan");
                         globalMap.put(user.getChatId(), map);
                         break;
                     case "Navoi":
+                        shareContact(null);
                         round.put(user.getChatId(), 5);
-                        shareContact();
                         map.put("getRegion", "Navoi");
                         globalMap.put(user.getChatId(), map);
                         break;
                     case "Surkhandarya":
+                        shareContact(null);
                         round.put(user.getChatId(), 5);
-                        shareContact();
                         map.put("getRegion", "Surkhandarya");
                         globalMap.put(user.getChatId(), map);
                         break;
                     case "Kashkadarya":
+                        shareContact(null);
                         round.put(user.getChatId(), 5);
-                        shareContact();
                         map.put("getRegion", "Kashkadarya");
                         globalMap.put(user.getChatId(), map);
                         break;
                     case "Syrdarya":
+                        shareContact(null);
                         round.put(user.getChatId(), 5);
-                        shareContact();
                         map.put("getRegion", "Syrdarya");
                         globalMap.put(user.getChatId(), map);
                         break;
                     case "Samarkand":
+                        shareContact(null);
                         round.put(user.getChatId(), 5);
-                        shareContact();
                         map.put("getRegion", "Samarkand");
                         globalMap.put(user.getChatId(), map);
                         break;
                     case "Khorezm":
+                        shareContact(null);
                         round.put(user.getChatId(), 5);
-                        shareContact();
                         map.put("getRegion", "Khorezm");
                         globalMap.put(user.getChatId(), map);
                         break;
                     case "Karakalpakstan":
+                        shareContact(null);
                         round.put(user.getChatId(), 5);
-                        shareContact();
                         map.put("getRegion", "Karakalpakstan");
                         globalMap.put(user.getChatId(), map);
                         break;
                     case "Tashkent Region":
+                        shareContact(null);
                         round.put(user.getChatId(), 5);
-                        shareContact();
                         map.put("getRegion", "Tashkent Region");
                         globalMap.put(user.getChatId(), map);
                         break;
                     case "Tashkent":
+                        shareContact(null);
                         round.put(user.getChatId(), 5);
-                        shareContact();
                         map.put("getRegion", "Tashkent");
                         globalMap.put(user.getChatId(), map);
                         break;
@@ -252,7 +290,7 @@ public class MainBotService extends TelegramLongPollingBot {
                         map.put("direction", update.getCallbackQuery().getData());
                         globalMap.put(user.getChatId(), map);
                         round.put(user.getChatId(), 6);
-                        executeButtons(buttonService.inputDirection(), null);
+                        executeButtons(buttonService.inputDirection(), null, null);
                         back.put(user.getChatId(), 5);
                         break;
                 }
@@ -262,14 +300,13 @@ public class MainBotService extends TelegramLongPollingBot {
         /***********************************************Contact********************************************************/
 
 
-
     }
 
 
-    private void executeButtons(ReplyKeyboardMarkup replyKeyboardMarkup, InlineKeyboardMarkup inlineKeyboardMarkup) {
+    private void executeButtons(ReplyKeyboardMarkup replyKeyboardMarkup, InlineKeyboardMarkup inlineKeyboardMarkup, String data) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(String.valueOf(user.getChatId()));
-        sendMessage.setText(userMessages.enResponse(round.get(user.getChatId())));
+        sendMessage.setText(userMessages.enResponse(round.get(user.getChatId()), data));
         sendMessage.enableHtml(true);
         if (replyKeyboardMarkup != null)
             sendMessage.setReplyMarkup(replyKeyboardMarkup);
@@ -283,10 +320,10 @@ public class MainBotService extends TelegramLongPollingBot {
     }
 
 
-    public void shareContact() {
+    public void shareContact(String data) {
         SendMessage sendMessage = new SendMessage();
         sendMessage.setChatId(String.valueOf(user.getChatId()));
-        sendMessage.setText(userMessages.enResponse(round.get(user.getChatId())));
+        sendMessage.setText(userMessages.enResponse(round.get(user.getChatId()), data));
         ReplyKeyboardMarkup replyKeyboardMarkup = new ReplyKeyboardMarkup();
         sendMessage.setReplyMarkup(replyKeyboardMarkup);
         replyKeyboardMarkup.setSelective(true);
@@ -295,7 +332,7 @@ public class MainBotService extends TelegramLongPollingBot {
         List<KeyboardRow> keyboard = new ArrayList<>();
         KeyboardRow keyboardFirstRow = new KeyboardRow();
         KeyboardButton keyboardButton = new KeyboardButton();
-        keyboardButton.setText(userMessages.enResponse(round.get(user.getChatId())));
+        keyboardButton.setText(userMessages.enResponse(round.get(user.getChatId()), data));
         keyboardButton.setRequestContact(true);
         keyboardFirstRow.add(keyboardButton);
         keyboard.add(keyboardFirstRow);

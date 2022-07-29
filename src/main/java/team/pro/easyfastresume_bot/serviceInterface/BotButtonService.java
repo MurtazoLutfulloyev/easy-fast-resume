@@ -32,4 +32,12 @@ public interface BotButtonService {
     ReplyKeyboardMarkup chooseEducation();
 
     ReplyKeyboardMarkup chooseEducationDirection();
+
+    ReplyKeyboardMarkup chooseCourse(String information);
+
+    ReplyKeyboardMarkup inputStartDate();
+
+    ReplyKeyboardMarkup inputEndDate();
+
+    ReplyKeyboardMarkup inputMasterEducation();
 }

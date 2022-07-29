@@ -14,10 +14,8 @@ import java.util.List;
 @Service
 public class UserMessagesImpl implements UserMessages {
 
-
-
     @Override
-    public String enResponse(int round) {
+    public String enResponse(int round, String data) {
         switch (round) {
             case 1:
                 return "Enter your name: ";
@@ -37,7 +35,15 @@ public class UserMessagesImpl implements UserMessages {
                 return "input education";
             case 9:
                 return "input education direction";
-
+            case 10:
+                return "Choose course";
+            case 11:
+                if(data.equals("finished")){
+               return "magistir";
+                }else if (data.equals("bachelor"))
+                return "input start date";
+            case 12:
+                return "input end date";
             default:
                 return "";
         }

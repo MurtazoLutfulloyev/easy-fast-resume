@@ -116,6 +116,30 @@ public class BotButtonServiceImpl implements BotButtonService {
         return createMarkupButtons(List.of("Main menu", "back"));
     }
 
+    @Override
+    public ReplyKeyboardMarkup chooseCourse(String information) {
+        if(information.equals("Bachelor")){
+            return createMarkupButtons(List.of("1","2","3","4","i finished","Main menu", "back"));
+        }
+        return createMarkupButtons(List.of("Main menu", "back"));
+    }
+
+    @Override
+    public ReplyKeyboardMarkup inputStartDate() {
+        return createMarkupButtons(List.of("Main menu", "back"));
+    }
+
+    @Override
+    public ReplyKeyboardMarkup inputEndDate() {
+        return createMarkupButtons(List.of("Present","Main menu", "back"));
+
+    }
+
+    @Override
+    public ReplyKeyboardMarkup inputMasterEducation() {
+        return createMarkupButtons(List.of("Main menu", "back"));
+
+    }
 
     @Override
     public InlineKeyboardMarkup chooseRegions() {
