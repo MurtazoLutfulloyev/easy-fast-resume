@@ -286,6 +286,12 @@ public class MainBotService extends TelegramLongPollingBot {
                 }
             } else if (round.get(user.getChatId()) == 5) {
                 switch (callbackQuery.getData()) {
+                    case "Not on this list":
+                    case "I prepared independently":
+                    case "Najot Ta'lim":
+                    case "Astrum":
+                    case "Bobir Akilkhanov Academy":
+                    case "Proweb":
                     case "PDP ACADEMY":
                         map.put("direction", update.getCallbackQuery().getData());
                         globalMap.put(user.getChatId(), map);
